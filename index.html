@@ -1,0 +1,976 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🌻 Моя Українська Ідентичність</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(135deg, #fafafa 0%, #ffffff 100%);
+            min-height: 100vh;
+            color: #2c2c2c;
+            line-height: 1.6;
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            padding: 20px;
+        }
+
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 300px;
+            height: 100vh;
+            background-image: url('mui.png');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            z-index: 0;
+            opacity: 0.8;
+        }
+
+        body::after {
+            content: '';
+            position: fixed;
+            top: 0;
+            right: 0;
+            width: 300px;
+            height: 100vh;
+            background-image: url('mui.png');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            z-index: 0;
+            opacity: 0.8;
+            transform: scaleX(-1);
+        }
+
+        .container {
+            max-width: 1000px;
+            width: 100%;
+            padding: 40px;
+            position: relative;
+            z-index: 1;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(20px) saturate(180%);
+            min-height: calc(100vh - 40px);
+            box-shadow: 
+                0 8px 32px rgba(139, 0, 0, 0.1),
+                0 0 0 1px rgba(255, 255, 255, 0.2);
+            border-radius: 24px;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 48px;
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.9) 0%, rgba(248, 248, 248, 0.9) 100%);
+            padding: 48px 40px;
+            border-radius: 24px;
+            box-shadow: 
+                0 4px 24px rgba(139, 0, 0, 0.08),
+                0 0 0 1px rgba(139, 0, 0, 0.1);
+            position: relative;
+            backdrop-filter: blur(10px);
+        }
+
+        .header h1 {
+            color: #2c2c2c;
+            font-size: 3.2em;
+            font-weight: 800;
+            margin-bottom: 16px;
+            letter-spacing: -0.02em;
+            background: linear-gradient(135deg, #2c2c2c 0%, #8B0000 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .header p {
+            color: #666;
+            font-size: 1.3em;
+            font-weight: 500;
+        }
+
+        .section {
+            background: rgba(255, 255, 255, 0.8);
+            padding: 32px;
+            border-radius: 20px;
+            margin-bottom: 24px;
+            box-shadow: 
+                0 4px 24px rgba(0, 0, 0, 0.04),
+                0 0 0 1px rgba(139, 0, 0, 0.08);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background: linear-gradient(90deg, transparent 0%, #8B0000 50%, transparent 100%);
+            border-radius: 20px 20px 0 0;
+        }
+
+        .section:hover {
+            transform: translateY(-4px);
+            box-shadow: 
+                0 8px 40px rgba(139, 0, 0, 0.12),
+                0 0 0 1px rgba(139, 0, 0, 0.15);
+        }
+
+        .section h2 {
+            color: #2c2c2c;
+            font-size: 2em;
+            font-weight: 700;
+            margin-bottom: 16px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .daily-wisdom {
+            background: linear-gradient(135deg, rgba(139, 0, 0, 0.9) 0%, rgba(44, 44, 44, 0.9) 100%);
+            color: white;
+            padding: 32px;
+            border-radius: 20px;
+            text-align: center;
+            font-size: 1.3em;
+            font-weight: 500;
+            margin-bottom: 32px;
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: 
+                0 8px 32px rgba(139, 0, 0, 0.2),
+                0 0 0 1px rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+        }
+
+        .daily-wisdom:hover {
+            transform: translateY(-2px) scale(1.01);
+            box-shadow: 
+                0 12px 40px rgba(139, 0, 0, 0.25),
+                0 0 0 1px rgba(255, 255, 255, 0.2);
+        }
+
+        .story-textarea {
+            width: 100%;
+            min-height: 120px;
+            padding: 20px;
+            border: 2px solid rgba(139, 0, 0, 0.1);
+            border-radius: 16px;
+            font-size: 1.1em;
+            font-family: inherit;
+            background: rgba(255, 255, 255, 0.8);
+            color: #2c2c2c;
+            transition: all 0.3s ease;
+            resize: vertical;
+            backdrop-filter: blur(10px);
+        }
+
+        .story-textarea:focus {
+            outline: none;
+            border-color: rgba(139, 0, 0, 0.3);
+            background: rgba(255, 255, 255, 0.95);
+            box-shadow: 0 0 0 4px rgba(139, 0, 0, 0.05);
+        }
+
+        .btn {
+            background: linear-gradient(135deg, rgba(139, 0, 0, 0.9) 0%, rgba(160, 0, 0, 0.9) 100%);
+            color: white;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            padding: 16px 32px;
+            border-radius: 16px;
+            font-size: 1.1em;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            margin-top: 20px;
+            position: relative;
+            text-transform: none;
+            letter-spacing: 0.5px;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 4px 16px rgba(139, 0, 0, 0.2);
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 24px rgba(139, 0, 0, 0.3);
+            background: linear-gradient(135deg, rgba(160, 0, 0, 0.9) 0%, rgba(139, 0, 0, 0.9) 100%);
+        }
+
+        .btn:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .btn.loading::after {
+            content: '';
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            border: 2px solid transparent;
+            border-top: 2px solid white;
+            border-radius: 50%;
+            right: 16px;
+            top: 50%;
+            transform: translateY(-50%);
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            to { transform: translateY(-50%) rotate(360deg); }
+        }
+
+        .reflection {
+            background: linear-gradient(135deg, rgba(248, 248, 248, 0.9) 0%, rgba(255, 255, 255, 0.9) 100%);
+            padding: 28px;
+            border-radius: 16px;
+            margin-top: 24px;
+            border-left: 3px solid rgba(139, 0, 0, 0.3);
+            border: 1px solid rgba(139, 0, 0, 0.1);
+            display: none;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.04);
+        }
+
+        .reflection-text {
+            font-size: 1.1em;
+            line-height: 1.7;
+            color: #2c2c2c;
+            font-weight: 400;
+        }
+
+        .cultural-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+            margin-top: 28px;
+        }
+
+        .cultural-card {
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.9) 0%, rgba(248, 248, 248, 0.9) 100%);
+            padding: 28px;
+            border-radius: 16px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            border: 1px solid rgba(139, 0, 0, 0.1);
+            position: relative;
+            overflow: hidden;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.04);
+        }
+
+        .cultural-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: linear-gradient(90deg, transparent 0%, rgba(139, 0, 0, 0.6) 50%, transparent 100%);
+        }
+
+        .cultural-card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 12px 32px rgba(139, 0, 0, 0.15);
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.95) 0%, rgba(250, 250, 250, 0.95) 100%);
+            border-color: rgba(139, 0, 0, 0.2);
+        }
+
+        .cultural-card h3 {
+            color: #2c2c2c;
+            font-size: 1.4em;
+            font-weight: 700;
+            margin-bottom: 12px;
+        }
+
+        .cultural-card p {
+            color: #666;
+            font-size: 1em;
+            line-height: 1.5;
+            font-weight: 400;
+        }
+
+        .category-options {
+            margin-top: 28px;
+            padding: 28px;
+            background: linear-gradient(135deg, rgba(248, 248, 248, 0.9) 0%, rgba(255, 255, 255, 0.9) 100%);
+            border-radius: 16px;
+            border: 1px solid rgba(139, 0, 0, 0.1);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.04);
+        }
+
+        .category-options h3 {
+            color: #2c2c2c;
+            font-size: 1.5em;
+            font-weight: 700;
+            margin-bottom: 24px;
+            text-align: center;
+        }
+
+        .subcategory-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 16px;
+        }
+
+        .subcategory-card {
+            background: rgba(255, 255, 255, 0.8);
+            padding: 18px;
+            border-radius: 12px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            border: 1px solid rgba(139, 0, 0, 0.1);
+            font-weight: 500;
+            color: #2c2c2c;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+        }
+
+        .subcategory-card:hover {
+            background: linear-gradient(135deg, rgba(139, 0, 0, 0.9) 0%, rgba(160, 0, 0, 0.9) 100%);
+            color: white;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(139, 0, 0, 0.2);
+        }
+
+        .lesson-content {
+            display: none;
+            background: linear-gradient(135deg, rgba(240, 240, 240, 0.9) 0%, rgba(248, 248, 248, 0.9) 100%);
+            padding: 28px;
+            border-radius: 16px;
+            margin-top: 24px;
+            border-left: 3px solid rgba(44, 44, 44, 0.3);
+            border: 1px solid rgba(44, 44, 44, 0.1);
+            color: #2c2c2c;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.04);
+        }
+
+        .chat-section {
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.9) 0%, rgba(248, 248, 248, 0.9) 100%);
+            padding: 32px;
+            border-radius: 20px;
+            margin-bottom: 24px;
+            box-shadow: 
+                0 4px 24px rgba(44, 44, 44, 0.08),
+                0 0 0 1px rgba(44, 44, 44, 0.1);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .chat-input {
+            display: flex;
+            gap: 16px;
+            margin-top: 24px;
+        }
+
+        .chat-input input {
+            flex: 1;
+            padding: 16px 20px;
+            border: 2px solid rgba(139, 0, 0, 0.1);
+            border-radius: 16px;
+            font-size: 1.1em;
+            transition: all 0.3s ease;
+            background: rgba(255, 255, 255, 0.8);
+            color: #2c2c2c;
+            font-weight: 400;
+            backdrop-filter: blur(10px);
+        }
+
+        .chat-input input:focus {
+            outline: none;
+            border-color: rgba(139, 0, 0, 0.3);
+            box-shadow: 0 0 0 4px rgba(139, 0, 0, 0.05);
+            background: rgba(255, 255, 255, 0.95);
+        }
+
+        .chat-btn {
+            background: linear-gradient(135deg, rgba(44, 44, 44, 0.9) 0%, rgba(26, 26, 26, 0.9) 100%);
+            color: white;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            padding: 16px 28px;
+            border-radius: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            text-transform: none;
+            letter-spacing: 0.5px;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 4px 16px rgba(44, 44, 44, 0.2);
+        }
+
+        .chat-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 24px rgba(44, 44, 44, 0.3);
+        }
+
+        .chat-response {
+            background: linear-gradient(135deg, rgba(245, 245, 245, 0.9) 0%, rgba(248, 248, 248, 0.9) 100%);
+            padding: 24px;
+            border-radius: 16px;
+            margin-top: 20px;
+            border-left: 3px solid rgba(44, 44, 44, 0.3);
+            border: 1px solid rgba(44, 44, 44, 0.1);
+            display: none;
+            color: #2c2c2c;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.04);
+        }
+
+        .footer {
+            text-align: center;
+            margin-top: 40px;
+            padding: 28px;
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.9) 0%, rgba(248, 248, 248, 0.9) 100%);
+            border-radius: 16px;
+            color: #666;
+            border: 1px solid rgba(139, 0, 0, 0.1);
+            font-weight: 500;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.04);
+        }
+
+        .error {
+            background: linear-gradient(135deg, rgba(255, 245, 245, 0.9) 0%, rgba(255, 248, 248, 0.9) 100%);
+            color: #8B0000;
+            padding: 20px;
+            border-radius: 12px;
+            margin-top: 20px;
+            border-left: 3px solid rgba(139, 0, 0, 0.3);
+            border: 1px solid rgba(255, 204, 204, 0.3);
+            font-weight: 500;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 4px 16px rgba(139, 0, 0, 0.08);
+        }
+
+        /* Mobile Design */
+        @media (max-width: 1600px) {
+            body::before,
+            body::after {
+                width: 200px;
+            }
+            
+            .container {
+                max-width: 900px;
+            }
+        }
+        
+        @media (max-width: 1400px) {
+            body::before,
+            body::after {
+                width: 150px;
+            }
+            
+            .container {
+                max-width: 800px;
+            }
+        }
+        
+        @media (max-width: 1200px) {
+            body::before,
+            body::after {
+                display: none;
+            }
+            
+            body {
+                padding: 20px;
+            }
+            
+            .container {
+                max-width: 100%;
+                background: rgba(255, 255, 255, 0.95);
+                box-shadow: 0 8px 32px rgba(139, 0, 0, 0.1);
+            }
+        }
+        
+        @media (max-width: 768px) {
+            body {
+                padding: 16px;
+            }
+            
+            .container {
+                padding: 20px;
+            }
+            
+            .header h1 {
+                font-size: 2.4em;
+            }
+            
+            .section {
+                padding: 24px;
+            }
+            
+            .cultural-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .chat-input {
+                flex-direction: column;
+            }
+
+            .subcategory-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Smooth scrolling */
+        html {
+            scroll-behavior: smooth;
+        }
+
+        /* Focus states */
+        *:focus {
+            outline: 2px solid rgba(139, 0, 0, 0.3);
+            outline-offset: 2px;
+        }
+
+        /* Glassmorphism enhancements */
+        @supports (backdrop-filter: blur(20px)) {
+            .container {
+                background: rgba(255, 255, 255, 0.85);
+                backdrop-filter: blur(20px) saturate(180%);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🫂 Моя Українська Ідентичність</h1>
+            <p>Цифрове серце, що говорить українською душею</p>
+        </div>
+
+        <div class="daily-wisdom" id="dailyWisdom" onclick="loadDailyWisdom()">
+            Завантаження мудрості дня...
+        </div>
+
+        <div class="main-content">
+            <!-- Identity Builder Section -->
+            <div class="section story-input">
+                <h2>🫀 Розкажіть про себе</h2>
+                <p>Поділіться своєю історією - ім'ям, родиною, спогадами, місцем народження. Я відчую вашу українську душу.</p>
+                <textarea 
+                    class="story-textarea" 
+                    id="userStory"
+                    placeholder="Мене звати... Я народився/народилася... Моя родина... Мої спогади про Україну..."
+                ></textarea>
+                <button class="btn" id="reflectBtn" onclick="generateReflection()">✨ Відобразити мою ідентичність</button>
+                
+                <div class="reflection" id="reflectionBox">
+                    <div class="reflection-text" id="reflectionText"></div>
+                </div>
+            </div>
+
+            <!-- Cultural Learning Section -->
+            <div class="section">
+                <h2>🧠 Українська інтелектуальна спадщина</h2>
+                <p>Глибоке пізнання української думки, філософії та інтелектуальних досягнень</p>
+                
+                <div class="cultural-grid">
+                    <div class="cultural-card" onclick="showCategoryOptions('language')">
+                        <h3>🗣️ Українська мова</h3>
+                        <p>Глибинні аспекти мови та мовознавства</p>
+                    </div>
+                    <div class="cultural-card" onclick="showCategoryOptions('history')">
+                        <h3>📜 Українська історія</h3>
+                        <p>Ключові події та постаті української історії</p>
+                    </div>
+                    <div class="cultural-card" onclick="showCategoryOptions('ethnography')">
+                        <h3>🌾 Етнографія та фольклор</h3>
+                        <p>Традиції, обряди та народна культура</p>
+                    </div>
+                    <div class="cultural-card" onclick="showCategoryOptions('literature')">
+                        <h3>📖 Українська література</h3>
+                        <p>Глибокий аналіз класиків та сучасників</p>
+                    </div>
+                    <div class="cultural-card" onclick="showCategoryOptions('freedom')">
+                        <h3>⚔️ Боротьба за свободу</h3>
+                        <p>Як українці боролися за незалежність</p>
+                    </div>
+                    <div class="cultural-card" onclick="showCategoryOptions('content')">
+                        <h3>🎵 Український контент</h3>
+                        <p>Пісні, книги та культурні твори</p>
+                    </div>
+                </div>
+                
+                <!-- Category Options -->
+                <div class="category-options" id="categoryOptions" style="display: none;">
+                    <h3 id="categoryTitle"></h3>
+                    <div class="subcategory-grid" id="subcategoryGrid"></div>
+                </div>
+                
+                <div class="lesson-content" id="lessonContent"></div>
+            </div>
+
+            <!-- AI Chat Section -->
+            <div class="section chat-section">
+                <h2>🤝 Поговоримо українською</h2>
+                <p>Поставте будь-яке питання про Україну, культуру, мову або просто поговоримо!</p>
+                
+                <div class="chat-input">
+                    <input type="text" id="chatInput" placeholder="Напишіть ваше питання українською..." onkeypress="handleChatKeyPress(event)">
+                    <button class="chat-btn" id="chatBtn" onclick="sendMessage()">Надіслати</button>
+                </div>
+                
+                <div class="chat-response" id="chatResponse">
+                    <div id="chatText"></div>
+                </div>
+            </div>
+        </div>
+
+        <div class="footer">
+            <p>💛💙 Зроблено з любов'ю до України та її народу 💙💛</p>
+            <p style="font-size: 0.9em; margin-top: 10px;">Працює на технології штучного інтелекту Anthropic Claude</p>
+        </div>
+    </div>
+
+    <script>
+        let isLoading = false;
+
+        // Initialize when page loads
+        document.addEventListener('DOMContentLoaded', function() {
+            loadDailyWisdom();
+        });
+
+        // Load daily wisdom from API
+        async function loadDailyWisdom() {
+            try {
+                const response = await fetch('/api/daily-wisdom');
+                if (response.ok) {
+                    const data = await response.json();
+                    document.getElementById('dailyWisdom').textContent = data.wisdom;
+                } else {
+                    throw new Error('Failed to load wisdom');
+                }
+            } catch (error) {
+                console.error('Error loading daily wisdom:', error);
+                document.getElementById('dailyWisdom').textContent = 'Натисніть, щоб оновити мудрість дня';
+            }
+        }
+
+        // Generate AI reflection
+        async function generateReflection() {
+            const story = document.getElementById('userStory').value.trim();
+            const reflectionBox = document.getElementById('reflectionBox');
+            const reflectionText = document.getElementById('reflectionText');
+            const reflectBtn = document.getElementById('reflectBtn');
+            
+            if (!story) {
+                showError('Будь ласка, розкажіть щось про себе');
+                return;
+            }
+
+            if (isLoading) return;
+            
+            isLoading = true;
+            reflectBtn.disabled = true;
+            reflectBtn.textContent = 'Обробка...';
+            
+            try {
+                const response = await fetch('/api/reflect', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({ story: story })
+                });
+
+                const data = await response.json();
+                
+                if (response.ok && data.success) {
+                    reflectionText.innerHTML = data.reflection;
+                    reflectionBox.style.display = 'block';
+                    reflectionBox.scrollIntoView({ behavior: 'smooth' });
+                } else {
+                    throw new Error(data.error || 'Failed to generate reflection');
+                }
+            } catch (error) {
+                showError('Помилка при генерації відображення: ' + error.message);
+            } finally {
+                isLoading = false;
+                reflectBtn.disabled = false;
+                reflectBtn.textContent = '✨ Відобразити мою ідентичність';
+            }
+        }
+
+        // Show lesson
+        async function showLesson(type) {
+            const lessonContent = document.getElementById('lessonContent');
+            
+            if (isLoading) return;
+            
+            isLoading = true;
+            lessonContent.innerHTML = '<div style="text-align: center; padding: 20px;">Завантаження уроку...</div>';
+            lessonContent.style.display = 'block';
+            
+            try {
+                const response = await fetch('/api/lesson', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({ 
+                        type: type, 
+                        level: 'початковий' 
+                    })
+                });
+
+                const data = await response.json();
+                
+                if (response.ok && data.success) {
+                    lessonContent.innerHTML = `<div class="reflection-text">${data.lesson}</div>`;
+                    lessonContent.scrollIntoView({ behavior: 'smooth' });
+                } else {
+                    throw new Error(data.error || 'Failed to load lesson');
+                }
+            } catch (error) {
+                lessonContent.innerHTML = `<div class="error">Помилка при завантаженні уроку: ${error.message}</div>`;
+            } finally {
+                isLoading = false;
+            }
+        }
+
+        // Show category options
+        function showCategoryOptions(category) {
+            const categoryOptions = document.getElementById('categoryOptions');
+            const categoryTitle = document.getElementById('categoryTitle');
+            const subcategoryGrid = document.getElementById('subcategoryGrid');
+            
+            const categories = {
+                'language': {
+                    title: '🗣️ Українська мова',
+                    subcategories: [
+                        { name: 'Етимологія та походження', id: 'etymology' },
+                        { name: 'Діалекти та говірки', id: 'dialects' },
+                        { name: 'Мова як код культури', id: 'language_culture_code' },
+                        { name: 'Неологізми та архаїзми', id: 'neologisms_archaisms' },
+                        { name: 'Психолінгвістика', id: 'psycholinguistics' },
+                        { name: 'Випадкова тема', id: 'linguistics_random' }
+                    ]
+                },
+                'history': {
+                    title: '📜 Українська історія',
+                    subcategories: [
+                        { name: 'Київська Русь та спадщина', id: 'kyivan_rus' },
+                        { name: 'Козацька держава Хмельницького', id: 'cossack_state' },
+                        { name: 'Галицько-Волинське князівство', id: 'galicia_volhynia' },
+                        { name: 'УНР та визвольні змагання', id: 'unr_liberation' },
+                        { name: 'Голодомор та репресії', id: 'holodomor_repressions' },
+                        { name: 'Випадкова тема', id: 'history_random' }
+                    ]
+                },
+                'ethnography': {
+                    title: '🌾 Етнографія та фольклор',
+                    subcategories: [
+                        { name: 'Календарні обряди та свята', id: 'calendar_rituals' },
+                        { name: 'Народні вірування та міфологія', id: 'folk_beliefs' },
+                        { name: 'Традиційне господарство', id: 'traditional_economy' },
+                        { name: 'Родинно-побутові традиції', id: 'family_traditions' },
+                        { name: 'Усна народна творчість', id: 'oral_folklore' },
+                        { name: 'Випадкова тема', id: 'ethnography_random' }
+                    ]
+                },
+                'literature': {
+                    title: '📖 Українська література',
+                    subcategories: [
+                        { name: 'Романтизм та Шевченко', id: 'romanticism_shevchenko' },
+                        { name: 'Реалізм кінця XIX ст.', id: 'realism_19th' },
+                        { name: 'Модернізм 1920-х років', id: 'modernism_1920s' },
+                        { name: 'Шістдесятники та дисидентство', id: 'sixtiers_dissidents' },
+                        { name: 'Сучасна література (1991-)', id: 'contemporary_literature' },
+                        { name: 'Випадкова тема', id: 'literature_random' }
+                    ]
+                },
+                'freedom': {
+                    title: '⚔️ Боротьба за свободу',
+                    subcategories: [
+                        { name: 'Козацькі повстання XVI-XVIII ст.', id: 'cossack_uprisings' },
+                        { name: 'Визвольні змагання 1917-1921', id: 'liberation_1917_1921' },
+                        { name: 'ОУН-УПА та національно-визвольна боротьба', id: 'oun_upa' },
+                        { name: 'Дисидентський рух та правозахисники', id: 'dissident_movement' },
+                        { name: 'Революція Гідності та сучасна боротьба', id: 'revolution_dignity' },
+                        { name: 'Випадкова тема', id: 'freedom_random' }
+                    ]
+                },
+                'content': {
+                    title: '🎵 Український контент',
+                    subcategories: [
+                        { name: 'Класичні українські пісні', id: 'classic_songs' },
+                        { name: 'Сучасна українська музика', id: 'modern_music' },
+                        { name: 'Знакові українські книги', id: 'iconic_books' },
+                        { name: 'Українське кіно та театр', id: 'cinema_theater' },
+                        { name: 'Народні пісні та колядки', id: 'folk_songs' },
+                        { name: 'Випадковий контент', id: 'content_random' }
+                    ]
+                }
+            };
+            
+            const categoryData = categories[category];
+            if (!categoryData) return;
+            
+            categoryTitle.textContent = categoryData.title;
+            subcategoryGrid.innerHTML = '';
+            
+            categoryData.subcategories.forEach(sub => {
+                const card = document.createElement('div');
+                card.className = 'subcategory-card';
+                card.textContent = sub.name;
+                card.onclick = () => showAdvancedLesson(category, sub.id, sub.name);
+                subcategoryGrid.appendChild(card);
+            });
+            
+            categoryOptions.style.display = 'block';
+            categoryOptions.scrollIntoView({ behavior: 'smooth' });
+        }
+
+        // Show advanced lesson with API call
+        async function showAdvancedLesson(category, subcategory, subcategoryName) {
+            const lessonContent = document.getElementById('lessonContent');
+            
+            if (isLoading) return;
+            
+            isLoading = true;
+            lessonContent.innerHTML = '<div style="text-align: center; padding: 20px;">Готую інтелектуальний матеріал...</div>';
+            lessonContent.style.display = 'block';
+            
+            try {
+                const response = await fetch('/api/advanced-lesson', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({ 
+                        category: category,
+                        subcategory: subcategory,
+                        subcategoryName: subcategoryName
+                    })
+                });
+
+                const data = await response.json();
+                
+                if (response.ok && data.success) {
+                    lessonContent.innerHTML = `<div class="reflection-text">${data.lesson}</div>`;
+                    lessonContent.scrollIntoView({ behavior: 'smooth' });
+                } else {
+                    throw new Error(data.error || 'Failed to load advanced lesson');
+                }
+            } catch (error) {
+                lessonContent.innerHTML = `<div class="error">Помилка при завантаженні уроку: ${error.message}</div>`;
+            } finally {
+                isLoading = false;
+            }
+        }
+
+        // Chat functionality with API call
+        async function sendMessage() {
+            const chatInput = document.getElementById('chatInput');
+            const chatResponse = document.getElementById('chatResponse');
+            const chatText = document.getElementById('chatText');
+            const chatBtn = document.getElementById('chatBtn');
+            
+            const message = chatInput.value.trim();
+            
+            if (!message) {
+                showError('Будь ласка, введіть повідомлення');
+                return;
+            }
+
+            if (isLoading) return;
+            
+            isLoading = true;
+            chatBtn.disabled = true;
+            chatBtn.textContent = 'Обробка...';
+            
+            chatText.innerHTML = '<div style="text-align: center; padding: 20px;">Думаю над відповіддю...</div>';
+            chatResponse.style.display = 'block';
+            
+            try {
+                const response = await fetch('/api/chat', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({ message: message })
+                });
+
+                const data = await response.json();
+                
+                if (response.ok && data.success) {
+                    chatText.innerHTML = `<div class="reflection-text">${data.response}</div>`;
+                    chatInput.value = '';
+                    chatResponse.scrollIntoView({ behavior: 'smooth' });
+                } else {
+                    throw new Error(data.error || 'Failed to get chat response');
+                }
+            } catch (error) {
+                chatText.innerHTML = `<div class="error">Помилка при отриманні відповіді: ${error.message}</div>`;
+            } finally {
+                isLoading = false;
+                chatBtn.disabled = false;
+                chatBtn.textContent = 'Надіслати';
+            }
+        }
+
+        // Handle Enter key in chat
+        function handleChatKeyPress(event) {
+            if (event.key === 'Enter' && !event.shiftKey) {
+                event.preventDefault();
+                sendMessage();
+            }
+        }
+
+        // Error display helper
+        function showError(message) {
+            // Create temporary error div
+            const errorDiv = document.createElement('div');
+            errorDiv.className = 'error';
+            errorDiv.textContent = message;
+            errorDiv.style.position = 'fixed';
+            errorDiv.style.top = '20px';
+            errorDiv.style.right = '20px';
+            errorDiv.style.zIndex = '1000';
+            errorDiv.style.maxWidth = '300px';
+            
+            document.body.appendChild(errorDiv);
+            
+            // Remove after 5 seconds
+            setTimeout(() => {
+                if (errorDiv.parentNode) {
+                    errorDiv.parentNode.removeChild(errorDiv);
+                }
+            }, 5000);
+        }
+
+        // Add some visual feedback
+        document.querySelectorAll('.cultural-card').forEach(card => {
+            card.addEventListener('click', function() {
+                // Add click animation
+                this.style.transform = 'scale(0.95)';
+                setTimeout(() => {
+                    this.style.transform = '';
+                }, 150);
+            });
+        });
+    </script>
+</body>
+</html>

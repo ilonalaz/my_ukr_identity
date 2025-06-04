@@ -15,10 +15,18 @@ app = Flask(__name__,
             static_folder='.')
 CORS(app)
 
-# Initialize Anthropic client
-client = anthropic.Anthropic(
-    api_key=os.getenv('ANTHROPIC_API_KEY')
-)
+# Initialize Anthropic client with error handling
+try:
+    api_key = os.getenv('ANTHROPIC_API_KEY')
+    if not api_key:
+        print("Warning: ANTHROPIC_API_KEY not found in environment variables")
+        client = None
+    else:
+        client = anthropic.Anthropic(api_key=api_key)
+        print("Anthropic client initialized successfully")
+except Exception as e:
+    print(f"Error initializing Anthropic client: {e}")
+    client = None
 
 # Cultural data for AI responses
 CULTURAL_REGIONS = {
@@ -44,6 +52,12 @@ WISDOM_QUOTES = [
     "\"Встань, Україно, встань і йди!\" - Павло Тичина"
 ]
 
+def check_anthropic_client():
+    """Check if Anthropic client is available"""
+    if client is None:
+        return False, "Anthropic API недоступний. Будь ласка, перевірте налаштування API ключа."
+    return True, None
+
 @app.route('/')
 def index():
     return render_template('index.html')
@@ -51,6 +65,11 @@ def index():
 @app.route('/api/reflect', methods=['POST'])
 def generate_reflection():
     try:
+        # Check if Anthropic client is available
+        client_available, error_msg = check_anthropic_client()
+        if not client_available:
+            return jsonify({'error': error_msg, 'success': False}), 500
+        
         data = request.json
         user_story = data.get('story', '')
         
@@ -100,6 +119,11 @@ def generate_reflection():
 @app.route('/api/lesson', methods=['POST'])
 def get_lesson():
     try:
+        # Check if Anthropic client is available
+        client_available, error_msg = check_anthropic_client()
+        if not client_available:
+            return jsonify({'error': error_msg, 'success': False}), 500
+        
         data = request.json
         lesson_type = data.get('type', '')
         user_level = data.get('level', 'початковий')
@@ -166,6 +190,11 @@ def get_lesson():
 @app.route('/api/advanced-lesson', methods=['POST'])
 def get_advanced_lesson():
     try:
+        # Check if Anthropic client is available
+        client_available, error_msg = check_anthropic_client()
+        if not client_available:
+            return jsonify({'error': error_msg, 'success': False}), 500
+        
         data = request.json
         category = data.get('category', '')
         subcategory = data.get('subcategory', '')
@@ -435,6 +464,16 @@ def get_advanced_lesson():
 @app.route('/api/daily-wisdom')
 def get_daily_wisdom():
     try:
+        # Check if Anthropic client is available
+        client_available, error_msg = check_anthropic_client()
+        if not client_available:
+            # Fallback to static quotes if API is not available
+            fallback_wisdom = random.choice(WISDOM_QUOTES)
+            return jsonify({
+                'wisdom': fallback_wisdom,
+                'success': True
+            })
+        
         # Use AI to generate personalized daily wisdom
         prompt = """
         Створи надихаючу українську мудрість дня. Це може бути:
@@ -473,6 +512,11 @@ def get_daily_wisdom():
 @app.route('/api/chat', methods=['POST'])
 def chat():
     try:
+        # Check if Anthropic client is available
+        client_available, error_msg = check_anthropic_client()
+        if not client_available:
+            return jsonify({'error': error_msg, 'success': False}), 500
+        
         data = request.json
         user_message = data.get('message', '')
         

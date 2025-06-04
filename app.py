@@ -62,6 +62,12 @@ def check_anthropic_client():
 def index():
     return render_template('index.html')
 
+@app.route('/static/<path:filename>')
+def static_files(filename):
+    """Serve static files from the current directory"""
+    from flask import send_from_directory
+    return send_from_directory('.', filename)
+
 @app.route('/api/reflect', methods=['POST'])
 def generate_reflection():
     try:

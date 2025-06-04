@@ -463,7 +463,7 @@
             box-shadow: 0 4px 16px rgba(139, 0, 0, 0.08);
         }
 
-        /* Mobile Design */
+        /* Mobile Design - Improved */
         @media (max-width: 1600px) {
             body::before,
             body::after {
@@ -489,27 +489,35 @@
         @media (max-width: 1200px) {
             body::before,
             body::after {
-                display: none;
+                width: 100px;
+                opacity: 0.6;
             }
             
             body {
-                padding: 20px;
+                padding: 15px;
             }
             
             .container {
-                max-width: 100%;
+                max-width: calc(100% - 220px);
                 background: rgba(255, 255, 255, 0.95);
                 box-shadow: 0 8px 32px rgba(139, 0, 0, 0.1);
             }
         }
         
         @media (max-width: 768px) {
+            body::before,
+            body::after {
+                width: 60px;
+                opacity: 0.5;
+            }
+            
             body {
-                padding: 16px;
+                padding: 10px;
             }
             
             .container {
-                padding: 20px;
+                max-width: calc(100% - 140px);
+                padding: 25px;
             }
             
             .header h1 {
@@ -522,14 +530,66 @@
             
             .cultural-grid {
                 grid-template-columns: 1fr;
+                gap: 16px;
             }
 
             .chat-input {
                 flex-direction: column;
+                gap: 12px;
             }
 
             .subcategory-grid {
                 grid-template-columns: 1fr;
+                gap: 12px;
+            }
+            
+            .daily-wisdom {
+                font-size: 1.1em;
+                padding: 24px;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            body::before,
+            body::after {
+                width: 40px;
+                opacity: 0.4;
+            }
+            
+            body {
+                padding: 8px;
+            }
+            
+            .container {
+                max-width: calc(100% - 100px);
+                padding: 20px;
+                min-height: calc(100vh - 20px);
+            }
+            
+            .header {
+                padding: 30px 20px;
+                margin-bottom: 32px;
+            }
+            
+            .header h1 {
+                font-size: 2em;
+            }
+            
+            .header p {
+                font-size: 1.1em;
+            }
+            
+            .section {
+                padding: 20px;
+            }
+            
+            .cultural-card {
+                padding: 20px;
+            }
+            
+            .subcategory-card {
+                padding: 14px;
+                font-size: 0.95em;
             }
         }
 
